@@ -1,0 +1,16 @@
+create table products_stage_ds.stage_audit_empy(
+  dataset_name string,
+  table_name string,
+  date_audit date,
+  total_record_count int64,
+  audited_by string
+);
+select * from products_stage_ds.stage_audit_empy;
+
+insert into `products_stage_ds.stage_audit_emp`
+select 'products_stage_ds' as dataset_name,
+'stage_audit_emp' as table_name,
+current_date() as date_audit,
+count(*) as total_record_count,
+"EMP-123" as audited_by
+from `products_stage_ds.prod_table`
